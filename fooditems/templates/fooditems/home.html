@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if er %}
+{{er}}
+{% endif %}
+<div>
+  <a href="{% url 'cart1' %}">CART</a>
+</div>
+<div class="row">
+  {% for j in food.all %}
+
+          <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+              <img class="card-img-top" src="{{j.image.url}}"/>
+              <div class="card-body">
+                <p class="card-text">{{j.title}}</p>
+                <p class="card-text">{{j.desc}}</p>
+                <p class="card-text">{{j.cost}}</p>
+                <form action="{% url 'cart'%}" method="post">
+                  {% csrf_token %}
+                  <input type="text" name="nam" value="{{j.title}}" hidden>
+                  <input type="text" name="id" value="{{j.id}}" hidden>
+                  <input type="number" name="costof" value="{{j.cost}}" hidden>
+                  <input type="number" name="quantity">
+                  <input class="btn btn-primary" type="submit" value="Add">
+                </form>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+  </div>
+{% endblock %}
