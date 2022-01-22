@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+<a href="{% url 'home' %}">Back</a>
+<style>
+table, td, th {
+  border: 1px solid black;
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+td ,th {
+  text-align: center;
+}
+</style>
+<table>
+  <tr>
+    <th>Itemname</th>
+    <th>Quantity</th>
+    <th>Cost</th>
+    <th>Order Date</th>
+  </tr>
+{% for k in his.all %}
+<tr>
+<td>{{k.item}}</td>
+<td>x{{k.quantity}}</td>
+<td>{{k.totalcost}}</td>
+<td>{{k.order_date}}</td>
+</tr>
+{% endfor %}
+</table>
+{% endblock %}
