@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+    table, td, th {
+      border: 1px solid black;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    td ,th {
+      text-align: center;
+    }
+    </style>
+  </head>
+  <body>
+    <table>
+      <tr>
+        <th>Itemname</th>
+        <th>Quantity</th>
+        <th>Cost</th>
+        <th>Order Date</th>
+      </tr>
+    {% for k in hi.all %}
+    <tr>
+    <td>{{k.item}}</td>
+    <td>x{{k.quantity}}</td>
+    <td>{{k.totalcost}}</td>
+    <td>{{k.order_date}}</td>
+    </tr>
+    {% endfor %}
+    </table>
+  </body>
+</html>

@@ -1,0 +1,312 @@
+<!doctype html>
+<html>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body {
+  font-family: Arial;
+  font-size: 17px;
+  padding: 8px;
+}
+
+
+.row {
+  display: -ms-flexbox;
+  display: flex;
+  align-content: center;
+  -ms-flex-wrap: wrap; /* IE10 */
+  flex-wrap: wrap;
+  margin: 0 -16px;
+}
+
+
+.col-50 {
+  -ms-flex: 50%; /* IE10 */
+  flex: 50%;
+}
+
+.col-75 {
+  -ms-flex: 75%; /* IE10 */
+  flex: 75%;
+}
+
+
+.col-50,
+.col-75 {
+  padding: 0 16px;
+  width: 30%;
+}
+
+.container {
+  float: center;
+  width: 70%;
+  background-color: #f2f2f2;
+  padding: 5px 20px 15px 20px;
+  border: 1px solid lightgrey;
+  border-radius: 3px;
+}
+.v{
+margin-bottom: 20px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  }
+
+
+input[type=text] {
+
+  margin-bottom: 20px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+input[type=password] {
+
+  margin-bottom: 20px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+label {
+  margin-bottom: 10px;
+  display: block;
+}
+
+.icon-container {
+  margin-bottom: 20px;
+  padding: 7px 0;
+  font-size: 24px;
+}
+
+.btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px;
+  margin: 10px 0;
+  border: none;
+  width: 40%;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 17px;
+}
+
+.btn:hover {
+  background-color: #ccc;
+}
+
+a {
+  color: #2196F3;
+}
+
+hr {
+  border: 1px solid lightgrey;
+}
+
+
+
+
+
+
+}
+</style>
+<script type="text/javascript">
+
+function checkname()
+{
+  if(document.form1.cardname.value=="")
+{
+  document.getElementById("qwerty1").innerHTML="<h5>Name of credit-card holder cannot be empty!!</h5>";
+  return false;
+}
+  if(document.form1.cardname.value.length>50)
+{
+  document.getElementById("qwerty1").innerHTML="<h5>Name of credit-card holder cannot be more than 50 characters!!</h5>";
+  document.getElementById("cname").value="";
+  document.getElementById("cname").focus();
+  return false;
+}
+
+  var k=document.form1.cardname;
+  var cardn=/^[A-Za-z ]+$/;
+  if(k.value.match(cardn))
+  {
+    document.getElementById("qwerty1").innerHTML="";
+    return true;
+  }
+  else
+  {
+    document.getElementById("qwerty1").innerHTML="<h5>Name of the card-holder should contain alphabets and spaces only(if any)!</h5>";
+    document.getElementById("cname").value="";
+    document.getElementById("cname").focus();
+    return false;
+
+  }
+
+
+
+
+}
+
+function cardnumber(inputtxt)
+{
+ if(document.form1.cardnum.value=="")
+{
+  document.getElementById("qwerty").innerHTML="<h5>credit-card number cannot be empty!!</h5>";
+  return false;
+}
+  var mcardno = /^(?:5[1-5][0-9]{14})$/;
+  var vcardno = /^4[0-9]{15}$/;
+  var aecardno = /^3[4-7][0-9]{13}$/;
+  if(inputtxt.value.match(mcardno))
+        {
+          document.getElementById("qwerty").innerHTML="";
+      return true;
+        }
+      else if(inputtxt.value.match(vcardno))
+      {
+        document.getElementById("qwerty").innerHTML="";
+      return true;
+      }
+      else if(inputtxt.value.match(aecardno))
+      {
+        document.getElementById("qwerty").innerHTML="";
+      return true;
+      }
+      else
+        {
+
+      document.getElementById("qwerty").innerHTML= "<h4>please Enter a valid amex/visa/mastercard credit-card number!</h4>";
+      document.getElementById("ccnum").value="";
+      document.getElementById("ccnum").focus();
+
+        return false;
+        }
+   }
+
+function cvvcheck(){
+if(document.form1.cv.value=="")
+{
+  document.getElementById("demo").innerHTML="<h5>CVV of credit-card cannot be empty!!</h5>";
+  return false;
+}
+  var n=document.form1.cv.value;
+  n.toString();
+  if((n.length)!=3||(isNaN(n)==true))
+  {
+    document.getElementById("demo").innerHTML ="<h5>please Enter a valid CVV.CVV is 3-digit number provided on the backside of credit card</h5>";
+document.getElementById("cv").value="";
+document.getElementById("cv").focus();
+  }
+  else
+  {
+    document.getElementById("demo").innerHTML="";
+  }
+
+
+
+}
+
+function finalcheck(){
+
+
+
+if(document.form1.cardname.value=="")
+{
+  document.getElementById("qwerty1").innerHTML="<h5>Name of credit-card holder cannot be empty!!</h5>";
+  return false;
+}
+
+
+else if(document.form1.cardnum.value=="")
+{
+  document.getElementById("qwerty").innerHTML="<h5>credit-card number cannot be empty!!</h5>";
+  return false;
+}
+
+else if(document.form1.cv.value=="")
+{
+  document.getElementById("demo").innerHTML="<h5>CVV of credit-card cannot be empty!!</h5>";
+  return false;
+}
+ else
+ {
+ 	alert("successful");
+ }
+
+
+
+}
+
+
+
+
+
+
+
+
+
+</script>
+<body>
+<h3>Amount:{{p}}</h3>
+<div class="row">
+  <div class="col-75">
+    <div class="container">
+      <form  name="form1" action="{% url 'pay2'%}" method="post" target="_parent">
+        {% csrf_token %}
+          <input type="text" name="cost" value="{{p}}" hidden>
+          <div class="col-50">
+            <h3>Payment</h3>
+            <label for="fname">Accepted Cards</label>
+            <div class="icon-container">
+              <i class="fa fa-cc-visa" style="color:navy;"></i>
+              <i class="fa fa-cc-mastercard" style="color:blue;"></i>
+              <i class="fa fa-cc-amex" style="color:red;"></i>
+
+            </div>
+            <label for="cname">Name on Card</label>
+            <input style="width: 150%;" type="text"  id="cname" name="cardname" placeholder="Enter your name" onblur="checkname();">
+            <p style="color: red;" id = "qwerty1" ></p>
+            <label for="ccnum">Credit card number</label>
+            <input style="width: 150%;" type="text"  id="ccnum" name="cardnum" placeholder="Enter credit card number without any special characters " onblur="cardnumber(document.form1.cardnum);">
+            <p style="color: red;" id = "qwerty"></p>
+            <label for="expmonth">Expiry Month</label>
+            <select id="mySelect" class="v">
+  <option value="jan">January</option>
+  <option value="feb">February</option>
+  <option value="mar">March</option>
+  <option value="apr">April</option>
+  <option value="may">May</option>
+  <option value="jun">June</option>
+  <option value="jul">July</option>
+  <option value="aug">August</option>
+  <option value="sep">September</option>
+  <option value="oct">October</option>
+  <option value="nov">November</option>
+  <option value="dec">December</option>
+</select>
+
+                <label for="expyear">Expiry Year</label>
+                <select id="expyear" class="v">
+  <option value="2020">2020</option>
+  <option value="2021">2021</option>
+  <option value="2022">2022</option>
+  <option value="2023">2023</option>
+  <option value="2024">2024</option>
+
+</select>
+<label for="cvv">CVV</label>
+                <input style="width: 150%;" type="password" id="cv" name="cv" placeholder="Enter CVV(3-digit number provided on the backside of credit card)" onblur="cvvcheck();">
+
+                <p style="color: red;" id="demo"></p>
+
+
+
+
+        <input  class="btn" type="submit" value="Proceed" onclick="finalcheck();"  />
+      </form>
+
+
+
+
+</body>
+</html>
