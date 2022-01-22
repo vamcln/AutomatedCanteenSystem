@@ -1,0 +1,39 @@
+{% extends 'hotel/base.html' %}
+
+{% block content %}
+<style>
+  #del{
+    background-color: #f44336;
+  }
+table, td, th {
+  border: 1px solid black;
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+  height: 10%;
+}
+td {
+  text-align: center;
+}
+</style>
+<table>
+  <tr>
+    <th>Itemname</th>
+    <th>Quantity</th>
+    <th>Cost</th>
+  </tr>
+{{% for j,k in names,costspent%}
+<tr>
+<td>{{j}}</td>
+<td>{{k}}</td>
+</tr>
+{% endfor %}
+</table>
+<form method="POST" action="{% url 'confirm' %}">
+  {% csrf_token %}
+  <input type="text" name="nam" value="{{nam}}" hidden>
+  <br />
+  <input class="btn btn-primary" type="submit" value="Confirm">
+</form>
+{%endblock%}

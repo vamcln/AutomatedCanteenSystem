@@ -1,0 +1,13 @@
+{% extends 'hotel/base.html' %}
+
+{% block content %}
+<form method="POST" action="{% url 'check' %}">
+  {% csrf_token %}
+  Username:
+  <br>
+  <input type="text" name="username" required>
+  <br>
+  <br />
+  <input class="btn btn-primary" type="submit" value="Check">
+</form>
+{% endblock %}

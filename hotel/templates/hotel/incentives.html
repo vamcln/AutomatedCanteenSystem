@@ -1,0 +1,32 @@
+{% extends 'hotel/base.html' %}
+
+{% block content %}
+<style>
+  #del{
+    background-color: #f44336;
+  }
+table, td, th {
+  border: 1px solid black;
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+  height: 10%;
+}
+td {
+  text-align: center;
+}
+</style>
+<table>
+  <tr>
+    <th>User</th>
+    <th>Moneyspent</th>
+  </tr>
+{% for j in h%}
+<tr>
+<td>{{j.item}}</td>
+<td>{{j.quantity}}</td>
+</tr>
+{% endfor %}
+</table>
+{%endblock%}

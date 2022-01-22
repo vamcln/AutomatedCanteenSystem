@@ -1,0 +1,19 @@
+
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>{% block title %}canteen{% endblock %}</title>
+</head>
+<body>
+
+  <nav>
+    <a href="{% url 'base' %}">Home</a>/
+    <a href="{% url 'bar' %}">Bar Chart Ajax</a> /
+    <a href="{% url 'pie' %}">Pie Chart Embedded</a>/
+    <a href="{% url 'line' %}">line Chart Embedded</a>/
+    <a href="{% url 'incentive' %}">Incentives</a>
+  </nav>
+  {% block content %}{% endblock %}
+
+</body>
+</html>

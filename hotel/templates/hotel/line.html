@@ -1,0 +1,56 @@
+{% extends 'hotel/base.html' %}
+
+{% block content %}
+
+  <div id="container" style="width: 75%;">
+
+    <canvas id="line-chart" data-url="{% url 'bar' %}"></canvas>
+
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+
+  <script>
+
+    $(function () {
+
+      var $lineChart = $("#line-chart");
+      $.ajax({
+        url: $lineChart.data("url"),
+        success: function (data) {
+
+          var ctx = $lineChart[0].getContext("2d");
+
+          new Chart(ctx, {
+            type: 'line',
+            data: {
+              labels: {{ labels|safe }},
+              datasets: [{
+                label: 'Number of Orders',
+                fill: false,
+                borderColor: 'red',
+                backgroundColor: 'rgba(153, 102, 255, 0.8)',
+                data: {{ data|safe }}
+              }]
+            },
+            options: {
+              responsive: true,
+              title: {
+                display: true,
+                text: 'Orders day-wise'
+              }
+            }
+          });
+
+        }
+      });
+
+    });
+
+
+  </script>
+
+
+{% endblock %}
